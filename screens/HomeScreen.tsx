@@ -1,65 +1,79 @@
-import { useNavigation } from '@react-navigation/native';
-import { FlatList, Pressable, StyleSheet, Text, View } from 'react-native';
-
-const DATA = [
-  {
-    id: 1,
-    name: 'Luke Skywalker',
-    birth_year: '19BBY',
-  },
-  {
-    id: 2,
-    name: 'C-3PO',
-    birth_year: '112BBY',
-  },
-  {
-    id: 3,
-    name: 'R2-D2',
-    birth_year: '33BBY',
-  },
-  {
-    id: 4,
-    name: 'Darth Vader',
-    birth_year: '41.9BBY',
-  },
-  {
-    id: 5,
-    name: 'Leia Organa',
-    birth_year: '19BBY',
-  },
-];
+import { useNavigation } from "@react-navigation/native";
+import { Button } from "@rneui/base";
+import { useEffect, useState } from "react";
+import {
+  FlatList,
+  ListRenderItem,
+  Pressable,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
+import ProductCard from "../components/productCard";
+import apiService from "../services/api";
+import Category from "../types/CategoryType";
+import ProductData from "../types/ProductTypes";
 
 const HomeScreen = () => {
-  const navigation = useNavigation();
+  const [products, setProducts] = useState<Array<ProductData>>([]);
+  const [categories, setCategory] = useState<Array<Category>>([]);
 
-  const renderListItems = ({ item }:any) => {
-    return (
-      <Pressable
-        onPress={() =>
-          navigation.navigate('Details', {
-            name: item.name,
-            birthYear: item.birth_year,
-          })
-        }
-      >
-        <Text
-          style={{ fontSize: 18, paddingHorizontal: 12, paddingVertical: 12 }}
-        >
-          {item.name}
-        </Text>
-        <View
-          style={{
-            borderWidth: StyleSheet.hairlineWidth,
-            borderColor: '#ccc',
-          }}
-        />
-      </Pressable>
-    );
+  useEffect(() => {
+    retriveProducts();
+    getCategories();
+  }, []);
+
+  const retriveProducts = () => {
+    apiService
+      .getAll()
+      .then((response: any) => {
+        setProducts(response.data.products);
+      })
+      .catch((e: Error) => {
+        console.log(e);
+      });
+  };
+
+  const getCategories = () => {
+    apiService
+      .getCategories()
+      .then((response: any) => {
+        let temp = response.data.categories;
+        temp.map((el: Category, index: number) => {
+          if (index === 0) {
+            el["isActive"] = true;
+          } else {
+            el["isActive"] = false;
+          }
+        });
+        setCategory(temp);
+      })
+      .catch((e: Error) => {
+        console.log(e);
+      });
+  };
+
+  console.log(categories);
+
+  const renderListItems: ListRenderItem<ProductData> = ({ item }) => {
+    return <ProductCard item={item} />;
   };
 
   return (
     <View style={{ flex: 1, paddingTop: 10 }}>
-      <FlatList data={DATA} renderItem={renderListItems} />
+      <ScrollView horizontal={true}>
+        {categories.map((category) => {
+          return (
+            <Button
+              buttonStyle={{ marginHorizontal: 10, borderRadius: 5 }}
+              title={category.name}
+              type={category.isActive ? "solid" : "outline"}
+            />
+          );
+        })}
+      </ScrollView>
+      <FlatList data={products} numColumns={2} renderItem={renderListItems} />
     </View>
   );
 };
