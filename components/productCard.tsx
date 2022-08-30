@@ -1,9 +1,8 @@
-import React from "react";
-import { Card } from "@rneui/themed";
-import ProductData from "../types/ProductTypes";
-import { Pressable, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { Icon, Text } from "@rneui/base";
+import { Card } from "@rneui/themed";
+import React from "react";
+import { Pressable, View } from "react-native";
 const ProdctCard = ({ item }: any) => {
   const navigation = useNavigation();
   return (
@@ -51,7 +50,11 @@ const ProdctCard = ({ item }: any) => {
             >
               $ {item.price}
             </Text>
-            <Pressable onPress={() => console.log("icon presed")}>
+            <Pressable onPress={() => {
+                 navigation.navigate("Product", {
+                  product :item
+                 })
+            }}>
               <Icon iconStyle={{ fontSize: 15 }} color={"#fff"} name="edit" />
             </Pressable>
           </View>

@@ -2,7 +2,7 @@ import Category from "../types/CategoryType";
 import ProductData from "../types/ProductTypes";
 import http from "./http-common";
 
-const get = (id: any) => {
+const getProductDetails = (id: any) => {
   return http.get<ProductData>(`/products/${id}`);
 };
 const getAll = () => {
@@ -11,9 +11,15 @@ const getAll = () => {
 const getCategories = () => {
   return http.get<Array<Category>>("/categories");
 };
+
+const addProduct = (data:ProductData) => {
+  return http.post<ProductData>(`/products}`,data);
+};
+
 const apiService = {
   getAll,
-  get,
+  getProductDetails,
   getCategories,
+  addProduct
 };
 export default apiService;
