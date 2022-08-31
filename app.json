@@ -1,7 +1,8 @@
 {
   "expo": {
     "name": "ikhlaqRnative",
-    "slug": "ikhlaqRnative",
+    "slug": "ikhlaq-Rnative",
+    "description": "React test app",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -17,10 +18,9 @@
     "assetBundlePatterns": [
       "**/*"
     ],
-    "ios": {
-      "supportsTablet": true
-    },
     "android": {
+      "package": "com.ikhlaq.firdous",
+      "versionCode": 1,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
