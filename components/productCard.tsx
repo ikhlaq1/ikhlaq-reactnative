@@ -3,6 +3,7 @@ import { Icon, Text } from "@rneui/base";
 import { Card } from "@rneui/themed";
 import React from "react";
 import { Pressable, View } from "react-native";
+import { heightToDp, widthToDp } from "../utils/responsive";
 const ProdctCard = ({ item }: any) => {
   const navigation = useNavigation();
   return (
@@ -25,7 +26,7 @@ const ProdctCard = ({ item }: any) => {
         <View
           style={{
             backgroundColor: "black",
-            height: 40,
+            height: heightToDp(6),
             padding: 5,
             borderRadius: 5,
           }}
@@ -39,10 +40,11 @@ const ProdctCard = ({ item }: any) => {
           >
             {item.name}
           </Text>
+               
           <View style={{ flexDirection: "row" }}>
             <Text
               style={{
-                width: "80%",
+                width: widthToDp(26),
                 color: "white",
                 alignSelf: "flex-start",
                 fontWeight: "bold",

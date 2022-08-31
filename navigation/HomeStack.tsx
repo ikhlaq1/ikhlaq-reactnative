@@ -9,7 +9,9 @@ const HomeStack = createNativeStackNavigator();
 
 const HomeStackNavigator = () => {
   return (
-    <HomeStack.Navigator>
+    <HomeStack.Navigator  screenOptions={{
+      headerBackTitleVisible: false
+    }}>
       <HomeStack.Screen name="Upayments Store" component={HomeScreen} />
       <HomeStack.Screen name="Details" component={DetailScreen} />
       <HomeStack.Screen name="Product" component={AddProduct} />

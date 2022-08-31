@@ -13,7 +13,7 @@ const getCategories = () => {
 };
 
 const addProduct = (data:ProductData) => {
-  return http.post<ProductData>(`/products}`,data);
+  return http.post<ProductData>(`/products`,data);
 };
 
 const apiService = {
