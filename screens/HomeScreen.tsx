@@ -58,11 +58,9 @@ const HomeScreen = () => {
   const categoryFilterFunction = (categoryName: string) => {
     const inputValue = categoryName;
     if (inputValue !== "") {
-      console.log(inputValue);
       const newArray = allProducts.filter((item) => {
         return item.category.match(inputValue);
       });
-      console.log(newArray);
       setProducts(newArray);
     } else {
       setProducts(allProducts);

@@ -1,8 +1,11 @@
 import { ExpoConfig } from '@expo/config-types';
 
 const config: ExpoConfig = {
-    name: 'my-app',
-    slug: ''
+    name: 'IkhlaqReact',
+    slug: 'my-app',
+    android: {
+      "package": "ikhlaq.firdous.khan"
+    }
 };
 
 export default config;

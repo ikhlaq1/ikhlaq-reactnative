@@ -11,7 +11,6 @@ const AddProduct = () => {
   const navigation = useNavigation();
   const route = useRoute();
   const { product }: any = route.params;
-  console.log(product);
   const [categories, setCategory] = useState<Array<Category>>([]);
   const [selectedCategory, setSelectedCategory] = useState<string>(product?.category ? product.category:'');
   const [laoding, setLoading] = useState<boolean>(false);
@@ -53,7 +52,6 @@ const AddProduct = () => {
     let finalData = data;
     finalData["developerEmail"] = "ikhlaq201@gmail.com";
     finalData["category"] = selectedCategory;
-    console.log(finalData);
     apiService
       .addProduct(finalData)
       .then((response: any) => {
@@ -88,7 +86,6 @@ const AddProduct = () => {
         avatar: product?.avatar ? product.avatar : "",
       }}
       onSubmit={(values) => {
-        console.log("submitted", values);
         addProduct(values);
       }}
     >

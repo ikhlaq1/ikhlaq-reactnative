@@ -26,7 +26,6 @@ const DetailScreen = () => {
     if (id) getProductById(id);
   }, [id]);
 
-  console.log(currentProduct);
 
   return (
     <View style={styles.container}>

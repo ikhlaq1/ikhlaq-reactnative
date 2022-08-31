@@ -2,7 +2,7 @@ import { useNavigation } from "@react-navigation/native";
 import { Icon, Text } from "@rneui/base";
 import { Card } from "@rneui/themed";
 import React from "react";
-import { Pressable, View } from "react-native";
+import { Pressable, StyleSheet, View } from "react-native";
 import { heightToDp, widthToDp } from "../utils/responsive";
 const ProdctCard = ({ item }: any) => {
   const navigation = useNavigation();
@@ -24,31 +24,17 @@ const ProdctCard = ({ item }: any) => {
         />
 
         <View
-          style={{
-            backgroundColor: "black",
-            height: heightToDp(6),
-            padding: 5,
-            borderRadius: 5,
-          }}
+          style={styles.bottomContainer}
         >
           <Text
-            style={{
-              color: "white",
-              alignSelf: "flex-start",
-              fontWeight: "bold",
-            }}
+            style={styles.name}
           >
             {item.name}
           </Text>
                
           <View style={{ flexDirection: "row" }}>
             <Text
-              style={{
-                width: widthToDp(26),
-                color: "white",
-                alignSelf: "flex-start",
-                fontWeight: "bold",
-              }}
+              style={styles.price}
             >
               $ {item.price}
             </Text>
@@ -65,5 +51,29 @@ const ProdctCard = ({ item }: any) => {
     </Pressable>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "white",
+  },
+  bottomContainer: {
+      backgroundColor: "black",
+      height: heightToDp(6),
+      padding: 5,
+      borderRadius: 10,
+  },
+  price:{
+    width: widthToDp(26),
+    color: "white",
+    alignSelf: "flex-start",
+    fontWeight: "bold",
+  },
+  name:{
+    color: "white",
+    alignSelf: "flex-start",
+    fontWeight: "bold",
+  }
+});
 
 export default ProdctCard;
