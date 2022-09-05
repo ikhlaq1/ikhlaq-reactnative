@@ -50,7 +50,7 @@ const AddProduct = () => {
   const addProduct = (data: any) => {
     setLoading(true)
     let finalData = data;
-    finalData["developerEmail"] = "ikhlaq201@gmail.com";
+    finalData["developerEmail"] = "khanikhlaq99@gmail.com";
     finalData["category"] = selectedCategory;
     apiService
       .addProduct(finalData)
